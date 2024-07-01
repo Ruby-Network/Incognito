@@ -1,0 +1,15 @@
+---
+import { Icon } from 'astro-icon/components';
+const { pageName, pageLocation } = Astro.props;
+---
+
+<div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+    <div class="flex grow items-center justify-left">
+        <a href={pageLocation} class="text-[30px] text-[--accent] mr-[20px]">
+            <Icon name="mdi:chevron-left" />
+        </a>
+        <p class="text-[16px] font-medium text-[--accent]">
+            { pageName }
+        </p>
+    </div>
+</div>

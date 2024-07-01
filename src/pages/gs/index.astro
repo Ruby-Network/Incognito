@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import { GAMES_LINK } from 'astro:env/client';
+import Layout from '@layouts/Layout.astro';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/assets/games/*.{jpeg,jpg,png,gif,webp}'
+);
+let games = await import('src/assets/games.json');
+if (!GAMES_LINK) {
+    return Astro.redirect('/');
+}
+---
+
+<Layout title="">
+    <div class="w-full h-full px-[15%]">
+        <div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+            <div class="flex grow items-center justify-left">
+                <a href="/" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <input oninput="searchGames(this.value)" class="flex flex-grow h-[42px] text-[14px] border-none text-[--text-color] bg-inherit outline-none" placeholder="Search games" id="app-input"></input> 
+            </div>
+        </div>
+        <div class="mt-[10px] pb-[60px] w-full grid justify-between gap-[20px] grid-cols-[repeat(auto-fill,166px)]">
+            {games.default.map((game) => (
+                <a href={`/gs/${btoa(game.name)}?py=${game.proxy}&url=${btoa(game.url)}&bf=${btoa(game.baseFile)}`} data-name={game.name} class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                    <Image class="object-cover w-[166px] h-[166px] rounded-[5px]" src={images[game.img]()} alt={`${game.name}'s logo`} />
+                </a>
+            ))}
+        </div>
+    </div>
+    <script>
+        //fudge the window type so TS doesn't complain
+        declare global {
+            interface Window {
+                searchGames: any;
+            }
+        }
+        window.searchGames = function(val: string) {
+            let elements: NodeListOf<HTMLElement> = document.querySelectorAll('[data-name]');
+            let count = 0;
+            elements.forEach(node => {
+                if (node.dataset.name === undefined) {
+                    return;
+                }
+                if (node.dataset.name.toLowerCase().includes(val.toLowerCase())) {
+                    node.classList.remove('hidden');
+                    count++
+                } else {
+                    node.classList.add('hidden');
+                }
+            })
+            if (!count) {
+                elements.forEach(node => {
+                    node.classList.remove('hidden');
+                })
+            }
+        }
+    </script>
+</Layout>

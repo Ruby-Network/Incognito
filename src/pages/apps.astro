@@ -1,0 +1,96 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '@layouts/Layout.astro';
+import type { ImageMetadata } from 'astro';
+import { Icon } from 'astro-icon/components';
+const images = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/assets/apps/*.{jpeg,jpg,png,gif}'
+);
+---
+
+<Layout title="Apps">
+    <div class="w-full h-full px-[15%]">
+        <div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+            <div class="flex grow items-center justify-left">
+                <a href="/" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <input oninput="searchApps(this.value)" class="flex flex-grow h-[42px] text-[14px] border-none text-[--text-color] bg-inherit outline-none" placeholder="Search apps" id="app-input"></input> 
+            </div>
+        </div>
+        <div class="mt-[10px] mb-[30px] w-full grid justify-between gap-[20px] grid-cols-[repeat(auto-fill,166px)]">
+            <div data-name="google" onclick="openApp('https://google.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/google.jpg"]()} alt="Google Logo" />
+            </div>
+            <div data-name="youtube" onclick="openApp('https://youtube.com')" class="transiton-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/yt.png"]()} alt="YT Logo" />
+            </div>
+            <div data-name="spotify" onclick="openApp('https://open.spotify.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/spotify.png"]()} alt="Spotify Logo" />
+            </div>
+            <div data-name="twitter" onclick="openApp('https://x.com')" class="transiton-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/twitter.png"]()} alt="Twitter Logo" />
+            </div>
+            <div data-name="reddit" onclick="openApp('https://reddit.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/reddit.png"]()} alt="Reddit Logo" />
+            </div>
+            <div data-name="twitch" onclick="openApp('https://twitch.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/twitch.jpg"]()} alt="Twitch Logo" />
+            </div>
+            <div data-name="discord" onclick="openApp('https://discord.com/login')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/discord.jpg"]()} alt="Discord Logo" />
+            </div>
+            <div data-name="tiktok" onclick="openApp('https://tiktok.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/tt.jpg"]()} alt="TikTok Logo" />
+            </div>
+            <div data-name="retroarch" onclick="openApp('https://retroarch.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/retroarch.png"]()} alt="Retroarch Logo" />
+            </div>
+            <div data-name="coolmathgames" onclick="openApp('https://coolmathgames.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/coolmath.png"]()} alt="Coolmath Games Logo" />
+            </div>
+            <div data-name="geforcenow" onclick="openApp('https://play.geforcenow.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/gfnow.png"]()} alt="GeforceNow Logo" />
+            </div>
+            <div data-name="y8" onclick="openApp('https://y8.com')" class="transition-all hover:scale-105 h-[166px] w-[166px] rounded-[5px] border-transparent bg-cover cursor-pointer">
+                <Image class="rounded-[5px]" src={images["/src/assets/apps/y8.png"]()} alt="Y8 Games Logo" />
+            </div> 
+        </div>
+    </div>
+    <script>
+        import { navigate } from "astro:transitions/client";
+        //fudge the window type so TS doesn't complain
+        declare global {
+            interface Window {
+                openApp: any;
+                searchApps: any;
+            }
+        }
+        declare var __uv$config: any;
+        window.openApp = function(url: string) {
+            window.loadProxyScripts().then(() => {
+                navigate("/?link=" + __uv$config.encodeUrl(url));
+            });
+        }
+        window.searchApps = function(val: string) {
+            let elements: NodeListOf<HTMLElement> = document.querySelectorAll('[data-name]');
+            let count = 0;
+            elements.forEach(node => {
+                if (node.dataset.name === undefined) {
+                    return;
+                }
+                if (node.dataset.name.toLowerCase().includes(val.toLowerCase())) {
+                    node.classList.remove('hidden');
+                    count++
+                } else {
+                    node.classList.add('hidden');
+                }
+            })
+            if (!count) {
+                elements.forEach(node => {
+                    node.classList.remove('hidden');
+                })
+            }
+        }
+    </script>
+</Layout>

@@ -1,0 +1,120 @@
+---
+import { BARE_SERVER_OPTION, RAMMERHEAD_OPTION } from 'astro:env/client';
+import NavMenu from '@components/MobileNav.astro';
+import Layout from '@layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+---
+<Layout title="Options">
+    <div class="w-full h-full px-[15%]">
+        <div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+            <div class="flex grow items-center">
+                <a href="/" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <p class="text-[16px] font-medium text-[--accent]">
+                    Options
+                </p>
+            </div>
+            <div class="items-center justify-right hidden md:flex">
+                <a href="/options/about" class="hover:underline text-[--text-color] mx-[20px] text-[14px]"> About </a>
+                <a href="/options/bt" class="hover:underline text-[--text-color] mx-[20px] text-[14px]"> Browser Tab </a>
+                <a href="/options" class="hover:underline text-[--accent] ml-[20px] text-[14px]"> General </a>
+            </div>
+            <div class="flex items-center justify-right md:hidden">
+                <NavMenu options="true" page="general" />
+            </div>
+        </div>
+        <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+            <p class="mb-[10px] text-[18px] font-medium"> Theme </p>
+            <div class="flex flex-col border-[1px] border-[--border-color] w-full lg:w-[400px] max-h-[200px] overflow-y-scroll">
+                <li id="ocean" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setTheme('ocean')">
+                    Ocean
+                </li>
+                <li id="midnight" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setTheme('midnight')">
+                    Midnight
+                </li>
+                <li id="space" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setTheme('space')">
+                Space
+                </li>
+                <li id="morning" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setTheme('morning')">
+                    Morning
+                </li>
+                <li id="terminal" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setTheme('terminal')">
+                    Terminal
+                </li>
+                <li id="resilient" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px]" onclick="setTheme('resilient')">
+                    Resilient
+                </li>
+            </div>
+        </div>
+        {RAMMERHEAD_OPTION &&
+            <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+                <p class="mb-[10px] text-[18px] font-medium"> Proxy </p>
+                <div class="flex flex-col border-[1px] border-[--border-color] w-full lg:w-[400px] max-h-[200px]">
+                    <li id="uv" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="setProxy('uv')">
+                        Ultraviolet
+                    </li>
+                    <li id="rh" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px]" onclick="setProxy('rh')">
+                        RammerHead
+                    </li>
+                </div>
+            </div>
+        }
+        {BARE_SERVER_OPTION &&
+            <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+                <p class="mb-[10px] text-[18px] font-medium"> Transport </p>
+                <div class="flex flex-col border-[1px] border-[--border-color] w-full lg:w-[400px] max-h-[200px]">
+                    <li id="epoxy" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px] border-b-[1px] border-b-[--border-color]" onclick="transport('epoxy')">
+                        Epoxy
+                    </li>
+                    <li id="bare" class="py-[20px] px-[18px] cursor-pointer list-none color-[--text-color] hover:underline text-[14px]" onclick="transport('bare')">
+                        Bare Server
+                    </li>
+                </div>
+            </div>
+        }
+        <div class="border-b-[1px] border-b-[--border-color]"></div>
+    </div>
+    <script>
+        //helper script so I don't have to repeat myself (located at: src/ts/settings.ts)
+        import { setTheme, setProxy, setTransport } from "@scripts/settings.ts";
+        //fudge the types so TS doesn't complain like a little bitch
+        declare global {
+            interface Window {
+                setTheme: any;
+                setProxy: any;
+                transport: any;
+            }
+        }
+        function setSelectionColor(lielem: string, previousVal: string | null) {
+            let liElement = document.getElementById(lielem) as HTMLLIElement;
+            try {
+                let previousLiElement = document.getElementById(previousVal as string) as HTMLLIElement;
+                previousLiElement.classList.remove("text-[--accent]");
+                previousLiElement.classList.add("text-[--text-color]");
+            } catch(_) {}
+            liElement.classList.remove("text-[--text-color]");
+            liElement.classList.add("text-[--accent]");
+        }
+        window.setTheme = function(val: string) {
+            setSelectionColor(val, localStorage.getItem("incog||currentTheme") || "ocean");
+            setTheme(val);
+        }
+        window.setProxy = function(val: string) {
+            setSelectionColor(val, localStorage.getItem("incog||proxy") || "uv");
+            setProxy(val);
+        }
+        window.transport = function (val: string) {
+            setSelectionColor(val, localStorage.getItem("incog||transport") || "epoxy");
+            setTransport(val);
+        }
+        document.addEventListener("astro:page-load", function () {
+            try {
+                setSelectionColor(localStorage.getItem("incog||currentTheme") as string || "ocean", null);
+                setSelectionColor(localStorage.getItem("incog||proxy") as string || "uv", null);
+                setSelectionColor(localStorage.getItem("incog||transport") as string || "epoxy" , null);
+            }
+            catch (_) {}
+        });
+    </script>
+</Layout>

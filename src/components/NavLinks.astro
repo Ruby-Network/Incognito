@@ -1,0 +1,17 @@
+---
+import { GAMES_LINK } from 'astro:env/client';
+import NavMenu from '@components/MobileNav.astro';
+import { Icon } from 'astro-icon/components';
+---
+<div class="flex items-center justify-right">
+    <div class="hidden md:flex">
+        <a href="/community" class="mx-[20px] text-[14px] cursor-pointer hover:underline"> Community </a>
+        <a href="/support" class="mx-[20px] text-[14px] cursor-pointer hover:underline"> Support </a>
+        <a href="/apps" class="mx-[20px] text-[14px] cursor-pointer hover:underline"> Apps </a>
+        {GAMES_LINK && <a href="/gs" class="mx-[20px] text-[14px] cursor-pointer hover:underline"> Games </a> }
+    </div>
+    <a href="/options" class="hidden md:block ml-[20px] mr-0 text-[14px] cursor-pointer text-[--accent]">
+        <Icon name="fa-solid:sliders-h" />
+    </a>
+    <NavMenu />
+</div>

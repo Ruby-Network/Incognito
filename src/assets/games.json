@@ -1,0 +1,614 @@
+[
+    {
+        "img": "/src/assets/games/tanuki.jpg",
+        "baseFile": "index.html",
+        "name": "Tanuki Sunset",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/tunnel-rush.jpg",
+        "baseFile": "index.html",
+        "name": "Tunnel Rush",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/stuntcars2.png",
+        "baseFile": "index.html",
+        "name": "Madalin Stunt Cars 2",
+        "tags": ["racing", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/moke.png",
+        "baseFile": "index.html",
+        "name": "Spank The Monkey",
+        "tags": ["arcade", "flash", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/slope.jpg",
+        "baseFile": "index.html",
+        "name": "Slope",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/run3.png",
+        "baseFile": "index.html",
+        "name": "Run 3",
+        "tags": ["arcade", "adventure", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/pacman.jpg",
+        "baseFile": "index.html",
+        "name": "Pacman",
+        "tags": ["arcade", "multiplayer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/hexgl.jpg",
+        "baseFile": "index.html",
+        "name": "HexGL",
+        "tags": ["racing", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/snake.png",
+        "baseFile": "index.html",
+        "name": "Google Snake",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/gpacman.jpg",
+        "baseFile": "index.html",
+        "name": "Google Pacman",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/mario.webp",
+        "baseFile": "index.html",
+        "name": "Super Mario Bros.",
+        "tags": ["arcade", "adventure", "retro", "platformer", "emulation"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/ducklife.webp",
+        "baseFile": "index.html",
+        "name": "DuckLife",
+        "tags": ["arcade", "static"],
+        "cdn": "tru",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/ducklife2.jpg",
+        "baseFile": "index.html",
+        "name": "DuckLife 2",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/ducklife3.jpg",
+        "baseFile": "index.html",
+        "name": "DuckLife 3",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/chromedino.png",
+        "baseFile": "index.html",
+        "name": "Google Dino Game",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/cookieclicker.jpg",
+        "baseFile": "index.html",
+        "name": "Cookie Clicker",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/retrobowl.jpg",
+        "baseFile": "index.html",
+        "name": "Retro Bowl",
+        "tags": ["arcade", "sports", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/riddleschool.webp",
+        "baseFile": "index.html",
+        "name": "Riddle School",
+        "tags": ["arcade", "adventure", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/riddleschool2.webp",
+        "baseFile": "index.html",
+        "name": "Riddle School 2",
+        "tags": ["arcade", "adventure", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/riddleschool3.jpg",
+        "baseFile": "index.html",
+        "name": "Riddle School 3",
+        "tags": ["arcade", "adventure", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/riddleschool4.jpg",
+        "baseFile": "index.html",
+        "name": "Riddle School 4",
+        "tags": ["arcade", "adventure", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/riddleschool5.webp",
+        "baseFile": "index.html",
+        "name": "Riddle School 5",
+        "tags": ["arcade", "adventure", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/superhot.webp",
+        "baseFile": "index.html",
+        "name": "SuperHot",
+        "tags": ["arcade", "shooter", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/tanktrouble.webp",
+        "baseFile": "index.html",
+        "name": "Tank Trouble 2",
+        "tags": ["arcade", "shooter", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/templerun2.jpg",
+        "baseFile": "index.html",
+        "name": "Temple Run 2",
+        "tags": ["arcade", "adventure", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/flashtetris.png",
+        "baseFile": "index.html",
+        "name": "Flash Tetris",
+        "tags": ["arcade", "strategy", "retro", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/emulatorjs.png",
+        "baseFile": "index.html",
+        "name": "EmulatorJS",
+        "tags": ["arcade", "strategy", "retro", "emulation"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/webretro.png",
+        "baseFile": "index.html",
+        "name": "WebRetro",
+        "tags": ["arcade", "strategy", "retro", "emulation"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/bloons.webp",
+        "baseFile": "index.html",
+        "name": "Bloons",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/bloonstd.jpg",
+        "baseFile": "index.html",
+        "name": "Bloons TD",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/bloonstd2.png",
+        "baseFile": "index.html",
+        "name": "Bloons TD 2",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/2048.png",
+        "baseFile": "index.html",
+        "name": "2048",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/bloxors.png",
+        "baseFile": "index.html",
+        "name": "Bloxors",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/geometrydash.png",
+        "baseFile": "index.html",
+        "name": "Geometry Dash",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/sticmanhook.jpg",
+        "baseFile": "index.html",
+        "name": "Stickman Hook",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/vex3.png",
+        "baseFile": "index.html",
+        "name": "Vex 3",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/vex4.png",
+        "baseFile": "index.html",
+        "name": "Vex 4",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/vex5.jpeg",
+        "baseFile": "index.html",
+        "name": "Vex 5",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/vex6.jpeg",
+        "baseFile": "index.html",
+        "name": "Vex 6",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/vex7.png",
+        "baseFile": "index.html",
+        "name": "Vex 7",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/stuntcars3.jpg",
+        "baseFile": "index.html",
+        "name": "Madalin Stunt Cars 3",
+        "tags": ["arcade", "racing", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/hardestgame.jpg",
+        "baseFile": "index.html",
+        "name": "Worlds Hardest Game",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/portaltheflashversion.jpg",
+        "baseFile": "index.html",
+        "name": "Portal Flash",
+        "tags": ["arcade", "strategy", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/crossy-road.png",
+        "baseFile": "index.html",
+        "name": "Crossy Road",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/subway-surfers.png",
+        "baseFile": "index.html",
+        "name": "Subway Surfers",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/dadish.png",
+        "baseFile": "index.html",
+        "name": "Dadish",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/dadish-2.png",
+        "baseFile": "index.html",
+        "name": "Dadish 2",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/doodle-jump.png",
+        "baseFile": "index.html",
+        "name": "Doodle Jump",
+        "tags": ["arcade", "platformer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/fruit-ninja.png",
+        "baseFile": "index.html",
+        "name": "Fruit Ninja",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/basketball-stars.png",
+        "baseFile": "index.html",
+        "name": "Basketball Stars",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/slope-2.png",
+        "baseFile": "index.html",
+        "name": "Slope 2",
+        "tags": ["arcade", "platformer", "multiplayer", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/stack.png",
+        "baseFile": "index.html",
+        "name": "Stack",
+        "tags": ["static", "strategy"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/1v1-lol.png",
+        "baseFile": "none",
+        "name": "1v1.lol",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "https://1v1.lol"
+    },
+    {
+        "img": "/src/assets/games/shellshock.png",
+        "baseFile": "none",
+        "name": "Shell Shockers",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "https://shellshock.io"
+    },
+    {
+        "img": "/src/assets/games/binding-of-isaac.jpeg",
+        "baseFile": "index.html",
+        "name": "The Binding of Isaac",
+        "tags": ["arcade", "strategy", "shooter", "flash", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/eaglerx.webp",
+        "baseFile": "index.html",
+        "name": "EaglerCraft X",
+        "tags": ["static", "sandbox", "multiplayer"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/miniagario.png",
+        "baseFile": "dots.html",
+        "name": "Mini Agario",
+        "tags": ["static", "arcade", "strategy"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/yohoho.jpeg",
+        "baseFile": "",
+        "name": "YoHoHo",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "https://yohoho.io"
+    },
+    {
+        "img": "/src/assets/games/paper.io2.webp",
+        "baseFile": "",
+        "name": "Paper.io 2",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "https://paper-io.com/"
+    },
+    {
+        "img": "/src/assets/games/frogger.jpeg",
+        "baseFile": "index.html",
+        "name": "Frogger",
+        "tags": ["arcade", "platformer", "retro", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/supermario64.jpeg",
+        "baseFile": "index.html",
+        "name": "Super Mario 64",
+        "tags": ["arcade", "platformer", "retro", "emulation"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/cybertanks.png",
+        "baseFile": "",
+        "name": "CyberTanks",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "https://xigency.herokuapp.com/"
+    },
+    {
+        "img": "/src/assets/games/slitherio.webp",
+        "baseFile": "",
+        "name": "Slither.io",
+        "tags": ["multiplayer", "strategy", "proxied"],
+        "cdn": "false",
+        "proxy": "true",
+        "url": "http://slither.io"
+    },
+    {
+        "img": "/src/assets/games/cat-ninja.png",
+        "baseFile": "index.html",
+        "name": "Cat Ninja",
+        "tags": ["arcade", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/gm2.jpeg",
+        "baseFile": "index.html",
+        "name": "Gun Mayhem 2",
+        "tags": ["arcade", "shooter", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/ssf.jpeg",
+        "baseFile": "index.html",
+        "name": "Super Smash Flash",
+        "tags": ["arcade", "shooter", "static"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/monkey-mart.png",
+        "baseFile": "index.html",
+        "name": "Monkey Mart",
+        "tags": ["arcade"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    },
+    {
+        "img": "/src/assets/games/watermelon.png",
+        "baseFile": "index.html",
+        "name": "Watermelon Game",
+        "tags": ["arcade"],
+        "cdn": "true",
+        "proxy": "false",
+        "url": ""
+    }
+]

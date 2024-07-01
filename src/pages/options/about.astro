@@ -1,0 +1,41 @@
+---
+import NavMenu from '@components/MobileNav.astro';
+import Layout from '@layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout title="Options">
+    <div class="w-full h-full px-[15%]">
+        <div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+            <div class="flex grow items-center">
+                <a href="/" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <p class="text-[16px] font-medium text-[--accent]">
+                    Options
+                </p>
+            </div>
+            <div class="items-center justify-right hidden md:flex">
+                <a href="/options/about" class="hover:underline text-[--accent] mx-[20px] text-[14px]"> About </a>
+                <a href="/options/bt" class="hover:underline text-[--text-color] mx-[20px] text-[14px]"> Browser Tab </a>
+                <a href="/options" class="hover:underline text-[--text-color] ml-[20px] text-[14px]"> General </a>
+            </div>
+            <div class="flex items-center justify-right md:hidden">
+                <NavMenu options="true" page="about" />
+            </div>
+        </div>
+        <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+            <span class="mt-[1em] mb-[16px] text-[18px] font-medium">About Incognito</span>
+            <p class="mt-[1em]">Access the world wide web, Incognito is an anti-censorship web service.</p>
+        </div>
+        <div class="border-b-[1px] border-b-[--border-color]"></div>
+        <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+            <span class="mt-[1em] mb-[16px] text-[18px] font-medium">Authors</span>
+            <p class="mt-[1em]"><a class="underline" href="https://motortruck1221.com" target="_blank" rel="noreferrer noopener">MotorTruck1221</a> - Incognito developer & maintainer </p>
+            <p class="mt-[1em]"><a class="underline" href="https://github.com/rifting" target="_blank" rel="noreferrer noopener">Rifting/Riftriot</a> - Incognito developer & maintainer </p>
+            <p class="mt-[1em]"><a class="underline" href="https://github.com/e9x" target="_blank" rel="noreferrer noopener">e9x</a> - Creator of <a class="underline" href="https://github.com/tomphttp" target="_blank" rel="noopener noreferrer">TompHTTP</a> </p>
+            <p class="mt-[1em]"><a class="underline" href="https://github.com/caracal-js" target="_blank" rel="noreferrer noopener">Caracal.js</a> - Creator of <a class="underline" href="https://github.com/titaniumnetwork-dev/ultraviolet" target="_blank" rel="noopener noreferrer">Ultraviolet</a> & Incognito</p>
+        </div>
+        <div class="border-b-[1px] border-b-[--border-color]"></div>
+    </div>
+</Layout>

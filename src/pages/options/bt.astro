@@ -1,0 +1,78 @@
+---
+import NavMenu from '@components/MobileNav.astro';
+import Layout from '@layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout title="Options">
+    <div class="w-full h-full px-[15%]">
+        <div class="h-[80px] w-full p-0 flex self-center transition duration-200">
+            <div class="flex grow items-center">
+                <a href="/" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <p class="text-[16px] font-medium text-[--accent]">
+                    Options
+                </p>
+            </div>
+            <div class="items-center justify-right hidden md:flex">
+                <a href="/options/about" class="hover:underline text-[--text-color] mx-[20px] text-[14px]"> About </a>
+                <a href="/options/bt" class="hover:underline text-[--accent] mx-[20px] text-[14px]"> Browser Tab </a>
+                <a href="/options" class="hover:underline text-[--text-color] ml-[20px] text-[14px]"> General </a>
+            </div>
+            <div class="flex items-center justify-right md:hidden">
+                <NavMenu options="true" page="bt" />
+            </div>
+        </div>
+        <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+            <p class="mb-[10px] text-[18px] font-medium"> Tab Title </p>
+            <input onchange="changeTitle(this.value)" id="title" class="w-[300px] py-[14px] px-[18px] my-[5px] text-[--text-color] text-[14px] border-[1px] border-[--border-color] bg-[--background] rounded-[2px] outline-none" placeholder="Empty Title"></input>
+            <p class="mt-[1em]"> Change the title of Incognito's browser tab title </p>
+        </div>
+        <div class="border-t-[1px] border-t-[--border-color] py-[30px]">
+            <p class="mb-[10px] text-[18px] font-medium"> Tab Icon </p>
+            <input onchange="changeFavicon(this.value)" id="favicono" class="w-[300px] py-[14px] px-[18px] my-[5px] text-[--text-color] text-[14px] border-[1px] border-[--border-color] bg-[--background] rounded-[2px] outline-none" placeholder="No Icon"></input>
+            <p class="mt-[1em]"> Change the icon of Incognito's browser tab. To change it into something like Google, type in "https://www.google.com/favicon.ico" </p>
+        </div>
+        <div class="border-b-[1px] border-b-[--border-color]"></div>
+    </div>
+    <script>
+        //function I have written so I don't repeat shit tons of code (located in src/ts/settings.ts)
+        import { changeTitle, changeFavicon } from "@scripts/settings.ts";
+        //this once again allows me to fudge the types so TS doesn't complain
+        declare global {
+            interface Window {
+                changeTitle: any;
+                changeFavicon: any;
+            }
+        }
+        function setInputVal(val: string | null, input: string, def: string) {
+            let inputElem = document.getElementById(input) as HTMLInputElement;
+            if (val === "" || val === undefined || val === null || val === "null") {
+                inputElem.value = def;
+            }
+            else {
+                inputElem.value = val;
+            }
+        }
+        window.changeTitle = function(val: string) {
+            if (val === "" || val === undefined || val === null || val === "null") {
+                return changeTitle(null)
+            }
+            changeTitle(val);
+        }
+        window.changeFavicon = function(url: string) {
+            if (url === "" || url === undefined || url === null || url === "null") {
+                return changeFavicon(null);
+            }
+            changeFavicon(url);
+        }
+        document.addEventListener("astro:page-load", function () {
+            try {
+                setInputVal(localStorage.getItem("incog||title"), "title", "Incognito");
+                setInputVal(localStorage.getItem("incog||favicon"), "favicono", `${window.location.origin}/logo.svg`);
+            }
+            catch (_) {}
+        })
+    </script>
+</Layout>

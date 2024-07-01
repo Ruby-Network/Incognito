@@ -1,0 +1,21 @@
+<script>
+    //All this code does is set the intial values and set things that need to persist
+    import { setTheme, setProxy, setTransport, changeTitle, changeFavicon } from "@scripts/settings.ts";  
+    function searchUrl() {
+        const currentSearch = localStorage.getItem("incog||search");
+        if (!currentSearch) {
+            localStorage.setItem("incog||search", "https://www.google.com/search?q=%s");
+        }
+    }
+    setTheme(localStorage.getItem("incog||currentTheme") as string || "ocean");
+    setProxy(localStorage.getItem("incog||proxy") as string || "uv");
+    setTransport(localStorage.getItem("incog||transport") as string || "epoxy");
+    searchUrl();
+    changeTitle(localStorage.getItem("incog||title") as string || null);
+    changeFavicon(localStorage.getItem("incog||favicon") as string || null);
+    document.addEventListener("astro:after-swap", function() {
+        setTheme(localStorage.getItem("incog||currentTheme") as string || "ocean")
+        changeTitle(localStorage.getItem("incog||title") as string || null);
+        changeFavicon(localStorage.getItem("incog||favicon") as string || null);
+    });
+</script>

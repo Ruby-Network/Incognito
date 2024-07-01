@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+const { options, page } = Astro.props;
+import { GAMES_LINK } from 'astro:env/client';
+---
+<div class="block md:hidden">
+    <button onclick="loadMobileNav()" class="ml-[20px] mr-0 text-[14px] cursor-pointer text-[--accent]">
+        <Icon name="fa-solid:sliders-h" />
+    </button>
+</div>
+<div id="mobileNav" class="hidden transition-all duration-200 absolute top-0 right-0 left-0 w-full h-full bg-[--background] flex flex-col">
+    <Icon onclick="closeMobileNav()" class="cursor-pointer text-[--accent] absolute right-[15px] top-[15px] w-[40px] h-[40px] text-[30px]" name="fa6-solid:xmark" />
+    <div class="flex flex-col w-full h-full justify-center items-center">
+        {!options ? (
+            <a class="w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background]" href="/community">Community</a>
+            <a class="w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background]" href="/support">Support</a> 
+            <a class="w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background]" href="/apps">Apps</a>
+            <>
+                {GAMES_LINK && (<a class="w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background]" href="/gs">Games</a>)}
+            </>
+            <a class="w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background]" href="/options">Options</a>
+        ) : (
+            <a class=`w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background] ${page === "about" && 'text-[--accent]'}` href="/options/about">About</a>
+            <a class=`w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background] ${page === "bt" && "text-[--accent]"}` href="/options/bt">Browser Tab</a>
+            <a class=`w-full text-center text-[17px] py-[35px] hover:brightness-75 bg-[--background] ${page === "general" && "text-[--accent]"}` href="/options">General</a>
+        )}
+    </div>
+</div>
+<script>
+    //type bs
+    declare global {
+        interface Window {
+            loadMobileNav: any;
+            closeMobileNav: any;
+        }
+    }
+    window.loadMobileNav = function() {
+        const nav = document.getElementById("mobileNav") as HTMLElement;
+        nav.classList.remove("hidden")
+    }
+    window.closeMobileNav = function() {
+        const nav = document.getElementById("mobileNav") as HTMLElement;
+        nav.classList.add("hidden");
+    }
+</script>

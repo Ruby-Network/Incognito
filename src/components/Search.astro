@@ -1,0 +1,130 @@
+---
+import { Icon } from 'astro-icon/components';
+const { link } = Astro.props;
+import FrameManager from '@components/FrameManager.astro';
+---
+<FrameManager />
+<div class="flex grow flex-row justify-left items-center">
+    <a href="/" class="ml-0 inline no-underline mx-[20px] text-[20px] cursor-pointer">
+        <svg class="w-[35px] h-[35px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 365.37 365.37"><defs>    <style>       .cls-1{    fill:none;    stroke-width:18px;}  .cls-1, .cls-2 {    stroke: var(--accent);    stroke-miterlimit:10;} .cls-2 {    fill: var(--accent);    stroke-width:5px;}    </style>  </defs><circle class="cls-1" cx="182.68" cy="182.68" r="173.68"></circle><path class="cls-2" d="M210.41,66.38A115.27,115.27,0,0,1,70.52,248.19,134,134,0,1,0,210.41,66.38Z" transform="translate(-17.32 -17.32)"></path></svg>
+    </a>
+    <div id="form-stuff" class="flex grow flex-col transition-all duration-200">
+        <div class="flex flex-row">
+            <input class="flex grow h-[42px] text-[14px] border-none bg-inherit outline-none" id="form-input" form="search-form" placeholder="Search the web"></input>
+            <button class="h-[14px] bg-transparent submit border-none p-[10px] cursor-pointer text-[--accent]" id="form-submit" form="search-form">
+                <Icon name="fa-solid:search" />
+            </button>
+        </div>
+        <div id="search-suggestions" class="hidden w-full flex flex-col"></div>
+    </div>
+    <current-url data-link={link} /> 
+    <script>
+        //simple script I wrote so I don't have to repeat my self (located at: src/ts/serviceWorker.ts)
+        import { initServiceWorker } from "@scripts/serviceWorker.ts";
+        import { RammerheadEncode } from "@scripts/rammerhead.ts";
+        //fudge the types slightly
+        declare var __uv$config: any;
+        declare var search: any;
+        //initially this is null but it gets defined almost immediately
+        let link: any = null;
+        type Suggestion = {
+            phrase: string;
+        };
+        //sets the style of the iframe and enables the little panel at the top
+        async function prox(term: string) {
+            let url;
+            if (localStorage.getItem("incog||proxy") === "uv") {
+                url = __uv$config.prefix + __uv$config.encodeUrl(search(term, localStorage.getItem("incog||search")))
+            } else if (localStorage.getItem("incog||proxy") === "rh") {
+                url = await RammerheadEncode(search(term, localStorage.getItem("incog||search")))
+            }
+            const iframe = document.getElementById("iframe") as HTMLIFrameElement
+            const frameManager = document.getElementById("framemanager") as HTMLElement;
+            frameManager.classList.remove("hidden");
+            iframe.classList.remove("hidden");
+            iframe.src = url || "/load";
+            if (!iframe) {
+                return; 
+            }
+        }
+        //we define a custom element here to set link to the params from the frontmatter
+        class CurrentUrl extends HTMLElement {
+            constructor() {
+                super();
+                link = this.dataset.link;
+            }
+        }
+        customElements.define("current-url", CurrentUrl);
+        //define all of our events and if there is a link proxy it and set the history to /
+        document.addEventListener("astro:page-load", function () {
+            //this is in a try {} catch {} as to not pollute the console with errors
+            //it will error due to this running on every page and not just this one
+            try {
+                if (link) {
+                    initServiceWorker().then(() => {
+                        prox(__uv$config.prefix + link);
+                        history.pushState({}, "", "/");
+                    })
+                }
+                const formInput = document.getElementById("form-input") as HTMLInputElement;
+                document.getElementById("form-submit")?.addEventListener("click", function () {
+                    initServiceWorker().then(() => {
+                        const iframe = document.getElementById("iframe") as HTMLIFrameElement;
+                        if (!iframe) {
+                            return;
+                        }
+                        prox(formInput?.value)
+                    })
+                })
+                document.getElementById("form-input")?.addEventListener("keypress", function (event: any) {
+                    if (event.key === "Enter") {
+                        initServiceWorker().then(() => {
+                            const iframe = document.getElementById("iframe") as HTMLIFrameElement;
+                            if (!iframe) {
+                                return;
+                            }
+                            prox(formInput?.value)
+                        })
+                    }
+                })
+                document.getElementById("form-input")?.addEventListener("input", async function() {
+                    document.getElementById("form-stuff")?.classList.add("absolute", "top-0", "left-0", "w-full", "h-full", "px-[15%]", "bg-[--background]");
+                    document.getElementById("form-input")?.classList.add("h-[80px]");
+                    document.getElementById("form-submit")?.classList.remove("h-[14px]");
+                    document.getElementById("form-submit")?.classList.add("h-[80px]");
+                    document.getElementById("search-suggestions")?.classList.remove("hidden")
+                    const value = formInput?.value
+                    if (value.length === 0) {
+                        document.getElementById("form-stuff")?.classList.remove("absolute", "top-0", "left-0", "w-full", "h-full", "px-[15%]", "bg-[--background]");
+                        document.getElementById("form-input")?.classList.remove("h-[80px]");
+                        document.getElementById("form-submit")?.classList.add("h-[14px]");
+                        document.getElementById("form-submit")?.classList.remove("h-[80px]");
+                        document.getElementById("search-suggestions")?.classList.add("hidden");
+                    }
+                    if (value.length >= 3) {
+                        //fetch from the API (which just fetches from ddg)
+                        await fetch("/api/search", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: value })}).then(async (apiRes) => { 
+                            if (apiRes) {
+                                const searchSuggestions = document.getElementById("search-suggestions") as HTMLElement
+                                let data = await apiRes.json();
+                                searchSuggestions.innerHTML = "";
+                                data.map((results: Suggestion) => {
+                                    let span = document.createElement("span")
+                                    span.classList.add("border-t-[1px]", "border-t-[--border-color]", "cursor-pointer", "hover:brightness-75", "text-[20px]", "py-[35px]");
+                                    span.id = "search-result"
+                                    span.innerText = results.phrase;
+                                    span.addEventListener("click", function() {
+                                        initServiceWorker().then(() => {
+                                            prox(results.phrase) 
+                                        })
+                                    })
+                                    searchSuggestions.appendChild(span);
+                                })
+                            }
+                        })
+                    }
+                })
+            } catch (_) {}
+        })
+    </script>
+</div>

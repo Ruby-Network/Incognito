@@ -1,0 +1,85 @@
+---
+const { game } = Astro.params;
+const proxy = Astro.url.searchParams.get('py') || null;
+const url = Astro.url.searchParams.get('url') || null;
+const baseFile = Astro.url.searchParams.get('bf') || null;
+import { GAMES_LINK } from 'astro:env/client';
+import Layout from '@layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+function decode(val: string) {
+    try {
+        return atob(val);
+    } catch (_) {}
+}
+if (!GAMES_LINK) {
+    return Astro.redirect('/');
+}
+---
+<Layout title="">
+    <div class="flex flex-col w-full h-full bg-[--background]">
+        <div class="h-[80px] w-full px-[15%] flex self-center transition duration-200">
+            <div class="flex grow items-center justify-left">
+                <a href="/gs" class="text-[30px] text-[--accent] mr-[20px]">
+                    <Icon name="mdi:chevron-left" />
+                </a>
+                <p class="text-[16px] grow font-medium text-[--accent]">
+                    { decode(game as string) }
+                </p>
+                <button onclick="fullScreenGame()" class="self-right text-[30px] text-[--accent]">
+                    <Icon name="mdi:fullscreen" />
+                </button>
+            </div>
+        </div>
+        <proxy-url data-url={decode(url as string)} data-proxy={proxy} class="hidden" />
+        {proxy !== "true" ?
+            <iframe id="gameIframe" class="w-full h-full" src={`/gms/${decode(game as string)!.toLowerCase().replace(/\s/g, '-')}/${decode(baseFile as string)}`} />
+            :
+            <iframe id="gameIframe" class="w-full h-full" src="/load" />
+        }
+    </div>
+    <script>
+        import { initServiceWorker } from "@scripts/serviceWorker.ts";
+        import { RammerheadEncode } from "@scripts/rammerhead.ts";
+        declare var __uv$config: any;
+        declare global {
+            interface Window {
+                fullScreenGame: any;
+            }
+        }
+        window.fullScreenGame = function() {
+            const iframe = document.getElementById("gameIframe") as HTMLIFrameElement;
+            iframe.requestFullscreen();
+        }
+        async function prox(term: string) {
+            let url;
+            if (localStorage.getItem("incog||proxy") === "uv") {
+                console.log(url)
+                url = __uv$config.prefix + __uv$config.encodeUrl(term)
+            } else if (localStorage.getItem("incog||proxy") === "rh") {
+                url = await RammerheadEncode(term)
+            }
+            const iframe = document.getElementById("gameIframe") as HTMLIFrameElement
+            iframe.src = url || "/load";
+            if (!iframe) {
+                return; 
+            }
+        }
+        class ProxyUrl extends HTMLElement {
+            constructor() {
+                super();
+                const url = this.dataset.url;
+                const proxy = this.dataset.proxy;
+                if (url && proxy === "true") { 
+                    initServiceWorker().then(() => {
+                        console.log("ea" + url)
+                        prox(url);
+                    })
+                }
+            }
+        }
+        customElements.define("proxy-url", ProxyUrl);
+    </script>
+    <script is:inline>
+        history.pushState({}, "", "/gs");
+    </script>
+</Layout>

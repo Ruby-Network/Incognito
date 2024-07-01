@@ -1,12 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "es2016",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "outDir": "../dist/server/"
-  }
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "jsxImportSource": "preact",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "paths": {}
+    }
 }
